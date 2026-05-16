@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leo-handover-ai-optimizer"
+version = "0.2.0"
+description = "Synthetic-data AI handover optimization prototype for LEO satellite networks"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Wonseok Kim" }]
+license = { text = "MIT" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

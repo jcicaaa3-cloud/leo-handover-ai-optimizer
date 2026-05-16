@@ -1,0 +1,55 @@
+{
+  "notice": "Synthetic demo data only. Not real satellite-network telemetry.",
+  "user_id": 1,
+  "timestep": 0,
+  "candidates": [
+    {
+      "sat_id": 8,
+      "elevation_deg": 24.67051456742812,
+      "distance_km": 1133.1378725349834,
+      "rsrp_dbm": -109.89268381912122,
+      "link_margin_db": 10.107316180878785,
+      "sat_load": 0.146115063416592,
+      "remaining_visible_s": 240.0,
+      "relative_velocity_km_s": 7.836337996250704,
+      "is_current_sat": 0,
+      "handover_penalty": 0,
+      "candidate_rank_signal": 0,
+      "demand_mbps": 1.2470059261251345,
+      "time_sin": 0.0,
+      "time_cos": 1.0
+    },
+    {
+      "sat_id": 2,
+      "elevation_deg": 19.18604732624668,
+      "distance_km": 1325.9582488798053,
+      "rsrp_dbm": -113.11992250472206,
+      "link_margin_db": 6.880077495277945,
+      "sat_load": 0.7669192770034102,
+      "remaining_visible_s": 120.0,
+      "relative_velocity_km_s": 7.816322791301278,
+      "is_current_sat": 0,
+      "handover_penalty": 0,
+      "candidate_rank_signal": 1,
+      "demand_mbps": 1.2470059261251345,
+      "time_sin": 0.0,
+      "time_cos": 1.0
+    },
+    {
+      "sat_id": 43,
+      "elevation_deg": 10.062379237745828,
+      "distance_km": 1810.8419873609307,
+      "rsrp_dbm": -117.2567137691003,
+      "link_margin_db": 2.743286230899699,
+      "sat_load": 0.3616796894572804,
+      "remaining_visible_s": 60.0,
+      "relative_velocity_km_s": 7.381054748937708,
+      "is_current_sat": 0,
+      "handover_penalty": 0,
+      "candidate_rank_signal": 2,
+      "demand_mbps": 1.2470059261251345,
+      "time_sin": 0.0,
+      "time_cos": 1.0
+    }
+  ]
+}

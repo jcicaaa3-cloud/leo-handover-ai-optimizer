@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LEO Satellite Handover AI Optimizer</title>
+  <style>
+    :root { --bg:#0b1020; --panel:#121a33; --text:#eef3ff; --muted:#aab7d9; --line:#2a365f; --accent:#8fb3ff; --warn:#ffd48f; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    header { padding:72px 24px 36px; max-width:1120px; margin:auto; }
+    .badge { display:inline-block; padding:6px 12px; border:1px solid var(--line); border-radius:999px; color:var(--accent); font-size:14px; margin-bottom:18px; }
+    .notice { border:1px solid rgba(255,212,143,.55); background:rgba(255,212,143,.10); color:var(--warn); padding:14px 16px; border-radius:16px; margin:18px 0 24px; }
+    h1 { font-size: clamp(36px, 5vw, 64px); line-height:1.05; margin:0 0 18px; letter-spacing:-0.04em; }
+    h2 { font-size:28px; margin:0 0 16px; }
+    p { color:var(--muted); font-size:17px; }
+    a { color:var(--accent); }
+    .hero-img, .wide-img { width:100%; border:1px solid var(--line); border-radius:18px; background:#fff; }
+    main { max-width:1120px; margin:auto; padding:0 24px 64px; }
+    section { margin-top:28px; padding:28px; border:1px solid var(--line); border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; }
+    .card { padding:18px; border:1px solid var(--line); border-radius:16px; background:var(--panel); }
+    .card strong { color:var(--text); display:block; margin-bottom:8px; }
+    table { width:100%; border-collapse: collapse; overflow:hidden; border-radius:14px; }
+    th, td { border-bottom:1px solid var(--line); padding:12px 10px; text-align:left; }
+    th { color:var(--text); background:rgba(255,255,255,.06); }
+    td { color:var(--muted); }
+    code, pre { background:#070b16; color:#dce7ff; border-radius:12px; }
+    pre { padding:16px; overflow-x:auto; border:1px solid var(--line); }
+    footer { max-width:1120px; margin:auto; padding:0 24px 48px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">AI · Network Optimization · LEO Satellite · Synthetic Demo</span>
+    <h1>LEO Satellite Handover AI Optimizer</h1>
+    <p>빠르게 변하는 LEO 위성 네트워크에서 사용자 단말이 어떤 위성에 연결할지 결정하는 AI 기반 handover ranking 프로토타입입니다.</p>
+    <div class="notice">⚠️ 이 페이지는 포트폴리오용 synthetic/fake data 실험입니다. 실제 위성 사업자 데이터, 고객 데이터, 상용망 telemetry, 실제 산업 적용 결과가 아닙니다.</div>
+    <img class="hero-img" src="docs/assets/readme_hero.png" alt="LEO handover AI optimizer hero image" />
+  </header>
+
+  <main>
+    <section>
+      <h2>Project Summary</h2>
+      <div class="grid">
+        <div class="card"><strong>Problem</strong><p>LEO 위성은 빠르게 이동해 가시 위성, 신호 품질, 부하, 남은 연결 시간이 계속 변합니다.</p></div>
+        <div class="card"><strong>Approach</strong><p>핸드오버 결정을 candidate satellite ranking 문제로 바꾸고, signal/visibility/load/stability를 함께 봅니다.</p></div>
+        <div class="card"><strong>Output</strong><p>선택 위성 ID, 후보별 score, baseline 비교 metric, FastAPI scoring/explanation endpoint를 제공합니다.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Architecture</h2>
+      <img class="wide-img" src="docs/assets/architecture.png" alt="Architecture diagram" />
+    </section>
+
+    <section>
+      <h2>Example Metrics</h2>
+      <p>Synthetic simulation과 temporal holdout split으로 만든 공개용 예시 결과입니다. 실제 산업 성능으로 해석하면 안 됩니다.</p>
+      <table>
+        <thead><tr><th>Policy</th><th>Oracle top-1</th><th>Handover rate</th><th>Mean visibility</th><th>Outage-risk</th><th>Oracle regret</th></tr></thead>
+        <tbody>
+          <tr><td>max_signal</td><td>0.941</td><td>0.089</td><td>259.2s</td><td>0.153</td><td>0.077</td></tr>
+          <tr><td>sticky_signal</td><td>0.932</td><td>0.089</td><td>257.8s</td><td>0.153</td><td>0.088</td></tr>
+          <tr><td>visibility_guard</td><td>0.958</td><td>0.089</td><td>265.3s</td><td>0.140</td><td>0.056</td></tr>
+          <tr><td>load_aware</td><td>0.962</td><td>0.089</td><td>262.6s</td><td>0.153</td><td>0.029</td></tr>
+          <tr><td>stability_aware</td><td>0.962</td><td>0.089</td><td>265.0s</td><td>0.144</td><td>0.022</td></tr>
+          <tr><td>ai_ranker</td><td>0.962</td><td>0.089</td><td>263.0s</td><td>0.148</td><td>0.036</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Visual Evidence</h2>
+      <div class="grid">
+        <img class="wide-img" src="docs/assets/evaluation_summary.png" alt="Evaluation summary" />
+        <img class="wide-img" src="docs/assets/risk_tradeoff.png" alt="Risk tradeoff" />
+        <img class="wide-img" src="docs/assets/scenario_timeline.png" alt="Scenario timeline" />
+        <img class="wide-img" src="docs/assets/feature_importance.png" alt="Feature importance" />
+      </div>
+    </section>
+
+    <section>
+      <h2>Run Locally</h2>
+      <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+PYTHONPATH=src bash scripts/run_full_pipeline.sh
+PYTHONPATH=src uvicorn leo_handover.api:app --reload</code></pre>
+      <p>After uploading, edit this page or README with your final GitHub repository URL.</p>
+    </section>
+  </main>
+
+  <footer>Portfolio project by Wonseok Kim · Public version uses reproducible synthetic simulation only.</footer>
+</body>
+</html>
